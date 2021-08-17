@@ -49,9 +49,9 @@ export default function ProductList({ products }) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   useEffect(() => {
-    for (let i = 0; i < products?.length; i++) {
+    for (let key in products) {
       setRows((prevState) => [
-        createData(products[i].id, products[i].name, products[i].sku),
+        createData(products[key].id, products[key].name, products[key].sku),
         ...prevState,
       ]);
     }
