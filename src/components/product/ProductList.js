@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const columns = [
   { id: "id", label: "ID", minWidth: 20 },
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductList({ products }) {
   const classes = useStyles();
+  const history = useHistory();
   const [page, setPage] = React.useState(0);
   const [rows, setRows] = React.useState([]);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -65,6 +67,11 @@ export default function ProductList({ products }) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const handleProductDetails = (row) => {
+    console.log(row.id);
+    history.push(`/${row.id}`);
+  }
 
   return (
     <Paper className={classes.root}>
@@ -88,7 +95,7 @@ export default function ProductList({ products }) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                  <TableRow hover onClick={() => handleProductDetails(row)} role="button" tabIndex={-1} key={row.id}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
