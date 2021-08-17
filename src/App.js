@@ -11,11 +11,11 @@ const YEAR = TODAY.getFullYear();
 function App() {
   const [isLoading, setLoading] = useState(true);
   const [products, setProducts] = useState();
-  const axios = require("axios").default;
+  const axios = require("./axios-catalog").default;
 
   useEffect(() => {
     axios
-      .get("https://www.adorebeauty.com.au/api/ecommerce/catalog/products")
+      .get("/products")
       .then((res) => {
         setProducts(res.data.data);
         setLoading(false);
