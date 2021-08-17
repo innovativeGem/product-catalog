@@ -1,5 +1,6 @@
 import './App.scss';
 import {ReactComponent as AdoreLogo} from './adore-logo.svg';
+import ProductList from './components/product/ProductList';
 
 const DEVELOPER = 'Naman Nanavati';
 const TODAY = new Date();
@@ -11,7 +12,9 @@ function App() {
       <header className="app-header">
         <AdoreLogo className="logo" />
       </header>
-      <main className="app-content">Product list</main>
+      <main className="app-content">
+        <ProductList />
+      </main>
       <footer className="app-footer">{DEVELOPER} - {YEAR}</footer>
     </div>
   );
